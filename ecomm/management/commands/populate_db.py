@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 from faker import Faker
 
@@ -13,7 +14,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         fake = Faker()
-        amount = options["amount"] if options["amount"] else 1_000_000
+        amount = options["amount"] if options["amount"] else 2_500_000
+
+        # Create the superuser
+        if not User.objects.filter(username="admin").exists():
+            User.objects.create_superuser("admin", "", "password")
 
         # Create a few products
         if Product.objects.count() == 0:
