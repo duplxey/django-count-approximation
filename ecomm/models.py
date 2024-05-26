@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-from ecomm.managers import ApproximateCountManager
+from ecomm.managers import ApproximateCountManager, InfiniteCountManager
 
 
 class Product(models.Model):
@@ -25,7 +25,7 @@ class Purchase(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    objects = ApproximateCountManager()
+    objects = InfiniteCountManager()
 
     def __str__(self):
         return f"Purchase #{self.id}"
