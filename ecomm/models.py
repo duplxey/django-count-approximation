@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+from ecomm.managers import ApproximateCountManager
+
 
 class Product(models.Model):
     name = models.CharField(max_length=128)
@@ -9,9 +11,6 @@ class Product(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        ordering = ["-created_at"]
 
     def __str__(self):
         return f"{self.name} (${self.price})"
@@ -26,8 +25,7 @@ class Purchase(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    class Meta:
-        ordering = ["-created_at"]
+    objects = ApproximateCountManager()
 
     def __str__(self):
         return f"Purchase #{self.id}"

@@ -28,7 +28,7 @@ Check out the [post](#).
               -e POSTGRES_DB=ecomm -d postgres
     ```
    
-    > Alternatively, you can use a locally installed Postgres instance. Just make sure to update the *settings.py* file.
+    > Alternatively, you can use a locally installed Postgres instance. Just make sure to update the *settings.py* file accordingly.
 
 1. Apply the migrations:
 
@@ -56,3 +56,9 @@ Check out the [post](#).
     username: admin
     password: password
     ```
+
+   The model with a lot of instances is `Purchase`.   
+   
+## Benchmark
+
+The project comes with [django-silk](https://pypi.org/project/django-silk/) preinstalled, which you can use for checking the performance of the SQL queries: [http://localhost:8000/silk/](http://localhost:8000/silk/).

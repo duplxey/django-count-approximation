@@ -9,10 +9,12 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class PurchaseAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "product", "first_name", "last_name", "created_at", "updated_at"]
-    list_select_related = ["product"]
-    list_filter = ["product"]
+    list_display = ["__str__", "first_name", "last_name", "created_at", "updated_at"]
     search_fields = ["product__name", "first_name", "last_name", "address"]
+    list_filter = ["product"]
+
+    def get_queryset(self, request):
+        return super().get_queryset(request)
 
 
 admin.site.register(Product, ProductAdmin)
