@@ -13,9 +13,6 @@ class PurchaseAdmin(admin.ModelAdmin):
     search_fields = ["product__name", "first_name", "last_name", "address"]
     list_filter = ["product"]
 
-    def get_queryset(self, request):
-        return super().get_queryset(request)
-
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Purchase, PurchaseAdmin)
